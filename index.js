@@ -2,9 +2,11 @@ const express = require('express')
 const mysql = require('mysql')
 const app = express()
 const expressPort = 3000;
+const cors = require('cors');
 //const sqlPort = 3306
 
 app.use(express.json())
+app.use(cors());
 
 // DB //
 const db = mysql.createConnection({
@@ -131,3 +133,9 @@ app.delete('/items/:id', (req, res) => {
     })
 })
 
+
+// cors //
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE', 'PUT']
+}));
