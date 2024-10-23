@@ -34,7 +34,7 @@ app.listen(expressPort, () => {
 });
 
 
-// items //
+//  items //
 app.get('/items', (req, res) => {
     db.query('SELECT * FROM items', (err, results) => {
         if(err) {
@@ -46,23 +46,45 @@ app.get('/items', (req, res) => {
 })
 
 
-// crée item //
+// crée item
 app.post('/items', (req, res) => {
-    const {name, price} = req.body
-    db.query('INSERT INTO items (name, price) VALUES (?, ?)', 
-        [name, price],
+    const {name, price, description, id_category} = req.body
+    
+    db.query('INSERT INTO items (name, price, description) VALUES (?, ?, ?)', 
+        [name, price, description],
         (err, result) => {
             if(err) {
+                console.log("Erreur 1:", err)
                 res.status(500).send("Erreur serveur")
-            } else {
-                res.status(201).json({
-                    id: result.insertId,
-                    name,
-                    price
-                })
+                return
             }
+            
+            const items_id = result.insertId
+            
+            // control //
+            console.log("ID Valide =","item id =",items_id,"category id =", id_category)
+            
+            // Part2 // 
+            db.query('INSERT INTO items_categories (item_id, category_id) VALUES (?, ?)',
+                [items_id, id_category],
+                (err2, result2) => {
+                    if(err2) {
+                        console.log("Erreur N°2:", err2)
+                        res.status(500).send("Erreur Part2")
+                        return
+                    }
+                    res.status(201).json({
+                        id: items_id,
+                        name,
+                        price,
+                        description,
+                        id_category   
+                    })
+                }
+            )
     })
 })
+    
 
 
 // 1 item //
