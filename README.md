@@ -63,6 +63,20 @@ Cette RestAPI permet de gérer des éléments dans une base de données. Elle in
       "id_category": 3
     }
     ```
+ ### 4.
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/items/id de l'item`
+  (Remplacez `id de l'item` par l'ID de l'élément à selectioner.)
+
+ ### 5.
+- **Méthode** : `PUTaa`
+- **URL** : `http://localhost:3000/items/id de l'item`
+  (Remplacez `id de l'item` par l'ID de l'élément à edité.)
+- **Body** : 
+  - Choisissez `Raw`, sélectionnez `JSON`, et collez le format suivant :
+    ```json
+  {"id":"id de l'item a edit","name":"nouveau nom de l'item","price": votre prix }
+    ```
 
 ## Technologies utilisées
 

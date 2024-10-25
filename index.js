@@ -61,6 +61,7 @@ app.post('/items', (req, res) => {
                 return
             }
             
+            // id = item_id //
             const items_id = result.insertId
             
             // control //
@@ -76,7 +77,7 @@ app.post('/items', (req, res) => {
                         return
                     }
 
-                    // excuter et ce connecter // 
+                    // excuter et ce connecter et defini le status // 
                     res.status(201).json({
                         id: items_id,
                         name,
@@ -94,7 +95,7 @@ app.post('/items', (req, res) => {
 // 1 item //
 app.get('/items/:id', (req, res) => {
     db.query('SELECT * FROM items WHERE id = ?',
-        [req.params.id],
+        [req.params.id], // definir les paramettre 
         (err, results) => {
             if(err) {
                 res.status(500).send("Erreur serveur")
