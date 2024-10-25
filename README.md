@@ -1,42 +1,79 @@
-RestAPI Made by Linnix 
+# RestAPI Made by Linnix
 
-#1 unzip the file 
+## Description
+Cette RestAPI permet de gérer des éléments dans une base de données. Elle inclut des fonctionnalités pour récupérer, créer et supprimer des éléments à l'aide de requêtes HTTP.
 
-#Install Node.js
+## Prérequis
 
-#2 The script need a database download Mamp or Xampp
+- [Node.js](https://nodejs.org/) (version recommandée : 16.x ou plus)
+- Un serveur local avec une base de données MySQL, tel que [MAMP](https://www.mamp.info/en/) ou [XAMPP](https://www.apachefriends.org/index.html)
+- [Postman](https://www.postman.com/downloads/) pour tester l'API
 
-#3 create new database  
+## Installation
 
-#6 Open the folder in VS code
+1. **Décompressez** le fichier après l'avoir téléchargé.
+2. **Installez Node.js** si ce n'est pas déjà fait en visitant [nodejs.org](https://nodejs.org).
+3. **Installez MAMP ou XAMPP** pour configurer un environnement de base de données local.
+4. **Créez une nouvelle base de données** à l'aide de phpMyAdmin, inclus dans MAMP ou XAMPP.
+5. **Ouvrez le projet** dans [Visual Studio Code](https://code.visualstudio.com/).
 
-#4 Go into the index.js 
+## Configuration
 
-#5 Modify line 19 database: 'your database name'
+1. **Accédez** au fichier `index.js` dans le dossier du projet.
+2. **Modifiez la ligne 19** pour y mettre le nom de la base de données que vous avez créée :
+    ```js
+    database: 'your_database_name'
+    ```
+   Remplacez `'your_database_name'` par le nom de votre base.
 
-#6 Open Terminal
+## Lancer le projet
 
-#7 write npm i
+1. **Ouvrez le terminal** dans VS Code.
+2. **Installez les dépendances** en tapant la commande suivante :
+    ```bash
+    npm install
+    ```
+3. **Démarrez le serveur** en tapant :
+    ```bash
+    npm start
+    ```
+    Si tout fonctionne correctement, vous verrez dans le terminal : **"C GOOD"**.
 
-#8 write start 
+## Utilisation de l'API avec Postman
 
-#9 if the index.js start corectly the terminal say C GOOD
+### 1. Récupérer tous les éléments
+- **Méthode** : `GET`
+- **URL** : `http://localhost:3000/items`
 
-#10 you need to download PostMan for test the script 
+### 2. Supprimer un élément
+- **Méthode** : `DELETE`
+- **URL** : `http://localhost:3000/items/1`
+  (Remplacez `1` par l'ID de l'élément à supprimer.)
 
-#11 When postman is install you create a new collection 
-
-#12 For get all items in your database use the fonction GET and Past this link (http://localhost:3000/items)
-
-#13 For delelte 1 items in yours database use the function DELETE and Past this link (http://localhost:3000/items/1)
-
-#14 For create a new item in your database use the fonction POST and Past this link (http://localhost:3000/items) go in the section body and chose RAW and select JSON and Past this 
+### 3. Créer un nouvel élément
+- **Méthode** : `POST`
+- **URL** : `http://localhost:3000/items`
+- **Body** : 
+  - Choisissez `Raw`, sélectionnez `JSON`, et collez le format suivant :
+    ```json
     {
-    "name": "test3333",
-    "description": "test3333",
-    "price": 13.99,
-    "id_category": 3
-}
+      "name": "test3333",
+      "description": "test3333",
+      "price": 13.99,
+      "id_category": 3
+    }
+    ```
 
-#15 
+## Technologies utilisées
 
+- **Node.js** : Serveur backend
+- **MySQL** : Base de données
+- **Postman** : Test des requêtes API
+
+## Auteurs
+
+- **Linnix**
+
+---
+
+Ceci est un modèle simple pour l'API que vous pouvez facilement cloner et configurer.

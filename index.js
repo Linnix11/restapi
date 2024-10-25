@@ -75,6 +75,8 @@ app.post('/items', (req, res) => {
                         res.status(500).send("Erreur Part2")
                         return
                     }
+
+                    // excuter et ce connecter // 
                     res.status(201).json({
                         id: items_id,
                         name,
